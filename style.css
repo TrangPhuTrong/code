@@ -184,8 +184,3 @@ p{
     list-style-type: none
 }
 
-.description-content ul li ul li{
-    text-align: justify;
-    list-style-type: square;
-    margin-bottom: 16px;
-}
