@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="background-color: pink; text-align: center">Điểm trung bình môn</h1>
+<label style="font-size: larger" for="toan" >Điểm toán:</label>
+<input placeholder="nhập điểm toán" type="number" id="toan">
+<br>
+<br>
+<label style="font-size: larger" for="hoa">Điểm hóa:</label>
+<input placeholder="nhập điểm hóa" type="number" id="hoa">
+<br>
+<br>
+<label style="font-size: larger" for="ly">Điểm Lý:</label>
+<input placeholder="nhập điểm toán" type="number" id="ly">
+<button onclick="Average()">Tính điểm trung bình</button>
+<p id="ketqua"></p>
+<script>
+    function Average() {
+        let toan = parseFloat(document.getElementById("toan").value);
+        let hoa = parseFloat(document.getElementById("hoa").value);
+        let ly = parseFloat(document.getElementById("ly").value);
+
+        if (isNaN(toan) || isNaN(hoa) || isNaN(ly)){
+            document.getElementById("ketqua").innerText = "Nhập lại!";
+            return;
+        }
+        let tong = toan + hoa + ly;
+        let tb = tong / 3;
+        document.getElementById ('ketqua').innerText = "Điểm trung bình là: " + tb.toFixed(2);
+     }
+
+</script>
+</body>
+</html>
