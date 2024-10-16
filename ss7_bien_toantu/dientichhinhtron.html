@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="text-align: center; background-color: lightblue;">Tính Diện Tích Hình Tròn</h1>
+
+<label for="bankinh">Nhập bán kính (r):</label>
+<input type="number" id="bankinh" placeholder="Nhập bán kính">
+<br><br>
+
+<button onclick="tinhDienTich()">Tính Diện Tích</button>
+<p id="ketqua"></p>
+
+<script>
+    function tinhDienTich() {
+        let bankinh = parseFloat(document.getElementById('bankinh').value);
+        if (isNaN(bankinh) || bankinh <= 0) {
+            document.getElementById('ketqua').innerText = "Vui lòng nhập một giá trị hợp lệ!";
+            return;
+        }
+        let dientich = Math.PI * Math.pow(bankinh, 2);
+        document.getElementById('ketqua').innerText =
+            "Diện tích hình tròn với bán kính " + bankinh + " là: " + dientich.toFixed(2);
+    }
+</script>
+</body>
+</html>

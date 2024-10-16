@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="text-align: center; background-color: lightblue;">Tính Điểm Trung Bình và Tổng Điểm</h1>
+<label for="vatly">Điểm Vật lý:</label>
+<input type="number" id="vatly" placeholder="Nhập điểm Vật lý">
+<br><br>
+
+<label for="hoahoc">Điểm Hóa học:</label>
+<input type="number" id="hoahoc" placeholder="Nhập điểm Hóa học">
+<br>
+<br>
+<label for="sinhhoc">Điểm Sinh học:</label>
+<input type="number" id="sinhhoc" placeholder="Nhập điểm Sinh học">
+<br>
+<br>
+<button onclick="tinhDiem()">Tính Điểm</button>
+<p id="ketqua"></p>
+<script>
+    function tinhDiem() {
+        let vatly = parseFloat(document.getElementById('vatly').value);
+        let hoahoc = parseFloat(document.getElementById('hoahoc').value);
+        let sinhhoc = parseFloat(document.getElementById('sinhhoc').value);
+
+        if (isNaN(vatly) || isNaN(hoahoc) || isNaN(sinhhoc)) {
+            document.getElementById('ketqua').innerText = "Vui lòng nhập lại!";
+            return;
+        }
+
+        let tongDiem = vatly + hoahoc + sinhhoc;
+        let diemTrungBinh = tongDiem / 3;
+        document.getElementById('ketqua').innerText =
+            "Tổng điểm: " + tongDiem.toFixed(2) + "  " +
+            "Điểm trung bình: " + diemTrungBinh.toFixed(2);
+    }
+</script>
+</body>
+</html>
