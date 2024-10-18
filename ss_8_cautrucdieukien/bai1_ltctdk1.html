@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    }
+    .container {
+    max-width: 600px;
+    margin: 0 auto;
+    }
+    .result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>Kiểm tra chia hết</h1>
+<form id="checkForm">
+    <label for="numberA">Số a:</label>
+    <input type="number" id="numberA" name="numberA" required><br><br>
+
+    <label for="numberB">Số b:</label>
+    <input type="number" id="numberB" name="numberB" required><br><br>
+
+    <button type="button" onclick="checkDivisibility()">Kiểm tra</button>
+</form>
+<div id="result" class="result"></div>
+</div>
+
+<script>
+    function checkDivisibility() {
+        const a = parseInt(document.getElementById('numberA').value, 10);
+        const b = parseInt(document.getElementById('numberB').value, 10);
+        let result;
+        if (b === 0) {
+            result = "Số b không thể là 0.";
+        } else if (a % b === 0) {
+            result = `Số ${a} chia hết cho số ${b}.`;
+        } else {
+            result = `Số ${a} không chia hết cho số ${b}.`;
+        }
+        document.getElementById('result').textContent = result;
+    }
+    </script>
+</body>
+</html>

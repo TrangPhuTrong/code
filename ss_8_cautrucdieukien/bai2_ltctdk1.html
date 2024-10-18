@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Kiểm tra điều kiện vào lớp 10</h1>
+    <form id="ageForm">
+        <label for="age">Nhập tuổi:</label>
+        <input type="number" id="age" name="age" required min="1"><br><br>
+        <button type="button" onclick="checkEligibility()">Kiểm tra</button>
+    </form>
+    <div id="result" class="result"></div>
+</div>
+<script>
+    function checkEligibility() {
+        const age = parseInt(document.getElementById('age').value, 10);
+        let result;
+        if (age < 15) {
+            result = "Tuổi của học sinh chưa đủ điều kiện để vào học lớp 10.";
+        } else {
+            result = "Tuổi của học sinh đủ điều kiện để vào học lớp 10.";
+        }
+        document.getElementById('result').textContent = result;
+    }
+</script>
+</body>
+</html>

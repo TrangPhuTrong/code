@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Kiểm tra số nguyên</h1>
+    <form id="numberForm">
+        <label for="number">Nhập số nguyên:</label>
+        <input type="number" id="number" name="number" required><br><br>
+
+        <button type="button" onclick="checkNumber()">Kiểm tra</button>
+    </form>
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    function checkNumber() {
+        // Lấy giá trị từ ô nhập liệu
+        const number = parseInt(document.getElementById('number').value, 10);
+
+        let result;
+
+        // Kiểm tra số nguyên
+        if (number > 0) {
+            result = `Số ${number} là lớn hơn 0.`;
+        } else if (number < 0) {
+            result = `Số ${number} là nhỏ hơn 0.`;
+        } else {
+            result = `Số ${number} bằng 0.`;
+        }
+
+        // Hiển thị kết quả
+        document.getElementById('result').textContent = result;
+    }
+</script>
+</body>
+</html>

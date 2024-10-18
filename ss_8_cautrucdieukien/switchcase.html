@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="text-align: center; background-color: lightblue;">Tính ngày trong tháng</h1>
+<label for="month">Nhập số thứ tự của tháng (1-12):</label>
+<br>
+<br>
+<input type="number" id="month" placeholder="Nhập số tháng" min="1" max="12">
+<button onclick="tinhSoNgay()">Tính số ngày</button>
+<br>
+<br>
+<label for="thang">Nhập số thứ tự của tháng thứ hai (1-12):</label>
+<br>
+<br>
+<input type="number" id="thang" placeholder="Nhập số tháng" min="1" max="12">
+<button onclick="tinhSoNgay()">Tính số ngày</button>
+<br><br>
+<p id="ketqua"></p>
+
+<script>
+    function tinhSoNgay() {
+        let month = parseInt(document.getElementById('month').value);
+        let thang = parseInt(document.getElementById('thang').value);
+        let days, ngay;
+        if (isNaN(month) || month < 1 || month > 12) {
+            document.getElementById('ketqua').innerText = "Vui lòng nhập số tháng từ 1 đến 12!";
+            return;
+        }
+        if (isNaN(thang) || thang < 1 || thang > 12) {
+            document.getElementById('ketqua').innerText = "Vui lòng nhập số tháng từ 1 đến 12!";
+            return;
+        }
+
+        switch (month) {
+            case 2:
+                days = "28 hoặc 29 ngày (năm nhuận)";
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                days = 30;
+                break;
+            default:
+                days = 31;
+        }
+        switch (thang) {
+            case 2:
+                ngay = "28 hoặc 29 (năm nhuận)";
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                ngay = 30;
+                break;
+            default:
+                ngay = 31;
+        }
+        document.getElementById('ketqua').innerText =
+            "Tháng " + month + " có " + days + " ngày.\n" +
+            "Và tháng " + thang + " có " + ngay + " ngày.";
+    }
+</script>
+</body>
+</html>

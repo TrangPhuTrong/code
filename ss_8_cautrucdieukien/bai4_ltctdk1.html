@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Tìm giá trị lớn nhất của ba số</h1>
+    <form id="numberForm">
+        <label for="number1">Số thứ nhất:</label>
+        <input type="number" id="number1" name="number1" required><br><br>
+
+        <label for="number2">Số thứ hai:</label>
+        <input type="number" id="number2" name="number2" required><br><br>
+
+        <label for="number3">Số thứ ba:</label>
+        <input type="number" id="number3" name="number3" required><br><br>
+
+        <button type="button" onclick="findMax()">Tìm giá trị lớn nhất</button>
+    </form>
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    function findMax() {
+        const num1 = parseInt(document.getElementById('number1').value, 10);
+        const num2 = parseInt(document.getElementById('number2').value, 10);
+        const num3 = parseInt(document.getElementById('number3').value, 10);
+        let max;
+        if (num1 >= num2 && num1 >= num3) {
+            max = num1;
+        } else if (num2 >= num1 && num2 >= num3) {
+            max = num2;
+        } else {
+            max = num3;
+        }
+        document.getElementById('result').textContent = `Giá trị lớn nhất trong ba số là ${max}.`;
+    }
+</script>
+</body>
+</html>
