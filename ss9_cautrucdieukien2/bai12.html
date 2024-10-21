@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Tính Lãi Ngân Hàng</h1>
+<label for="principal">Số tiền ban đầu (VNĐ):</label>
+<input type="number" id="principal" required min="0">
+<br>
+<br>
+<label for="months">Số tháng cho vay:</label>
+<input type="number" id="months" required min="1">
+<br>
+<br>=
+<label for="interestRate">Lãi suất hàng tháng (%):</label>
+<input type="number" id="interestRate" required min="0" step="0.01">
+<br>
+<br>
+<button onclick="calculateInterest()">Tính lãi</button>
+<div id="result" class="result"></div>
+<script>
+    function calculateInterest() {
+        const principal = parseFloat(document.getElementById('principal').value);
+        const months = parseInt(document.getElementById('months').value);
+        const interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+
+        if (principal <= 0 || months <= 0 || interestRate < 0) {
+            document.getElementById('result').textContent = "Vui lòng nhập thông tin hợp lệ!";
+            return;
+        }
+
+        let totalAmount = principal;
+
+        for (let i = 0; i < months; i++) {
+            totalAmount += totalAmount * interestRate;
+        }
+
+        const totalInterest = totalAmount - principal; // Tổng lãi
+        document.getElementById('result').textContent = `Tổng số tiền sau ${months} tháng là: ${totalAmount.toFixed(2)} VNĐ. Tổng lãi nhận được là: ${totalInterest.toFixed(2)} VNĐ.`;
+    }
+</script>
+</body>
+</html>
