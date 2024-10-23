@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Game Đoán Số</h1>
+<button id="playButton">Chơi</button>
+<script>
+    document.getElementById('playButton').onclick = function() {
+        let min = parseInt(prompt("Nhập số tối thiểu:"));
+        let max = parseInt(prompt("Nhập số tối đa:"));
+        if (isNaN(min) || isNaN(max) || min >= max) {
+            alert("Vui lòng nhập khoảng hợp lệ.");
+            return;
+        }
+        let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        let guessed = false;
+        while (!guessed) {
+            let userGuess = parseInt(prompt(`Đoán một số trong khoảng ${min} đến ${max}:`));
+            if (isNaN(userGuess)) {
+                alert("Vui lòng nhập một số hợp lệ.");
+                continue;
+            }
+            if (userGuess === randomNumber) {
+                alert("Chúc mừng! Bạn đã đoán đúng số.");
+                guessed = true;
+            } else if (userGuess < randomNumber) {
+                alert("Số bạn đoán bé hơn số ngẫu nhiên. Hãy thử lại!");
+            } else {
+                alert("Số bạn đoán lớn hơn số ngẫu nhiên. Hãy thử lại!");
+            }
+        }
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Hiển thị số nguyên tố</h1>
+<label for="count">nhập số:</label>
+<input type="number" id="count" value="10">
+<button onclick="displayPrimes()">Show Primes</button>
+
+<div id="output"></div>
+
+<script>
+    // Hàm kiểm tra một số có phải là số nguyên tố không
+    function isPrime(num) {
+        if (num <= 1) return false;
+        if (num <= 3) return true;
+        if (num % 2 === 0 || num % 3 === 0) return false;
+        for (let i = 5; i * i <= num; i += 6) {
+            if (num % i === 0 || num % (i + 2) === 0) return false;
+        }
+        return true;
+    }
+
+    // Hàm trả về mảng chứa n số nguyên tố đầu tiên
+    function firstNPrimes(n) {
+        const primes = [];
+        let num = 2;
+        while (primes.length < n) {
+            if (isPrime(num)) {
+                primes.push(num);
+            }
+            num++;
+        }
+        return primes;
+    }
+
+    // Hàm hiển thị số nguyên tố lên trang
+    function displayPrimes() {
+        const count = parseInt(document.getElementById('count').value, 10);
+        const primes = firstNPrimes(count);
+        document.getElementById('output').textContent = `First ${count} prime numbers are: ${primes.join(', ')}`;
+    }
+</script>
+</body>
+</html>

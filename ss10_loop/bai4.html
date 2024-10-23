@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Số đầu tiên trong dãy Fibonacci chia hết cho 5</h1>
+<p id="result"></p>
+
+<script>
+    function timSoFibonacciChiaHetCho5() {
+        let a = 0, b = 1, fibonacci;
+
+        while (true) {
+            fibonacci = a + b;
+            a = b;
+            b = fibonacci;
+
+            if (fibonacci % 5 === 0) {
+                return fibonacci;
+            }
+        }
+    }
+
+    document.getElementById('result').textContent = "Số đầu tiên trong dãy Fibonacci chia hết cho 5 là: " + timSoFibonacciChiaHetCho5();
+</script>
+</body>
+</html>

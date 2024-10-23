@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function tinhTongFibonacci() {
+        let a = 0, b = 1;
+        let sum = a + b;
+        let count = 2;
+
+        while (count < 20) {
+            let fibonacci = a + b;
+            sum += fibonacci;
+            a=b;
+            b = fibonacci;
+            count++;
+        }
+        return sum;
+    }
+    console.log("Tổng của 20 số Fibonacci đầu tiên là: " + tinhTongFibonacci());
+</script>
+</body>
+</html>

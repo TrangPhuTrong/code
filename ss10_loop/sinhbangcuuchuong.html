@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Bảng cửu chương</h1>
+
+<table border="1" cellpadding="5">
+<thead>
+    <tr>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+    </tr>
+</thead>
+   <tbody id="multiplicationTable"></tbody>
+</table>
+
+<script>
+    function generateMultiplicationTable() {
+        let tableBody = document.getElementById('multiplicationTable');
+
+        for (let i = 1; i <= 9; i++) { // Từ 1 đến 9 hàng
+            let row = `<tr>`;
+            for (let j = 2; j <= 9; j++) { // Từ 2 đến 9 cột
+                row += `<td>${j} x ${i} = ${j * i}</td>`;
+            }
+            row += `</tr>`;
+            tableBody.innerHTML += row; // Thêm hàng vào bảng
+        }
+    }
+
+    // Gọi hàm để hiển thị bảng cửu chương
+    generateMultiplicationTable();
+</script>
+</body>
+</html>
