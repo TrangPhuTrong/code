@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const height = 5;
+    // Tam giác vuông thẳng
+    for (let i = 1; i <= height; i++) {
+        let row = '';
+        for (let j = 1; j <= i; j++) {
+            row += '*';
+        }
+        console.log(row);
+    }
+    // Tam giác vuông ngược
+    for (let i = height; i >= 1; i--) {
+        let row = '';
+        for (let j = 1; j <= i; j++) {
+            row += "*";
+        }
+        console.log(row);
+    }
+    // Tam giác vuông với góc vuông ở góc dưới bên phải
+    for (let i = 1; i <= height; i++) {
+        let row = '';
+        for (let j = 1; j <= height - i; j++) {
+            row += ' ';
+        }
+        for (let j = 1; j <= i; j++) {
+            row += '*';
+        }
+        console.log(row);
+    }
+    for (let i = height; i >= 1; i--) {
+        let row = '';
+        for (let j = 1; j <= height - i; j++) {
+            row += ' ';
+        }
+        for (let j = 1; j <= i; j++) {
+            row += '*';
+        }
+        console.log(row);
+    }
+</script>
+</body>
+</html>

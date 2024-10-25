@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>In hình chữ nhật</h1>
+<script>
+    const height = 5; // Số hàng
+    const width = 10; // Số cột
+
+    for (let i = 1; i <= height; i++) {
+        let row = '';
+        for (let j = 1; j <= width; j++) {
+            if (i === 1 || i === height || j === 1 || j === width) {
+                row += '*';
+            } else {
+                row += ' ';
+            }
+        }
+        console.log(row);
+    }
+</script>
+</body>
+</html>

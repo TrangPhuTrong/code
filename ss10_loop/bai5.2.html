@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function calculateInterest() {
+        let principal = parseFloat(prompt("Nhập số tiền ban đầu (VNĐ):"));
+        let months = parseInt(prompt("Nhập số tháng cho vay:"));
+        let interestRate = parseFloat(prompt("Nhập lãi suất hàng tháng (%):")) / 100;
+        if (isNaN(principal) || isNaN(months) || isNaN(interestRate) || principal <= 0 || months <= 0 || interestRate < 0) {
+            alert("Vui lòng nhập thông tin hợp lệ!");
+            return;
+        }
+        let totalAmount = principal;
+        for (let i = 0; i < months; i++) {
+            let interest = totalAmount * interestRate;
+            totalAmount += interest;
+        }
+
+        alert(`Số tiền sau ${months} tháng là: ${totalAmount.toFixed(2)} VNĐ`);
+    }
+    calculateInterest();
+</script>
+</body>
+</html>
