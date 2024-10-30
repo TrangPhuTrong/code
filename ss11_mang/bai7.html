@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = [];
+    for (let i = 0; i < 10; i++) {
+        array[i] = parseInt(prompt(`Nhập vào số nguyên thứ ${i + 1}:`), 10);
+    }
+    let V = parseInt(prompt('Nhập số nguyên V: '), 10);
+    let foundIndex = array.indexOf(V);
+    if (foundIndex !== -1) {
+        for (let i = foundIndex; i < array.length - 1; i++) {
+            array[i] = array[i + 1];
+        }
+        array[array.length - 1] = 0;
+        console.log(`Số nguyên ${V} đã được xóa khỏi mảng.`);
+    } else {
+        console.log(`Số nguyên ${V} không có trong mảng.`);
+    }
+    console.log('Mảng sau khi thao tác:', array);
+</script>
+</body>
+</html>

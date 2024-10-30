@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const numbers = [3, 12, 7, 15, 9, 20, 5, 30, 11, 8];
+    let max = numbers[0];
+    let maxIndex = 0;
+    for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+            maxIndex = i;
+        }
+    }
+    console.log("Phần tử lớn nhất trong mảng là: " + max);
+    console.log("Vị trí của phần tử lớn nhất là: " + maxIndex);
+</script>
+</body>
+</html>

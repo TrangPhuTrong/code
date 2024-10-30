@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const numbers = [5, 12, 7, 20, 8, 15, 3, 11, 9, 6];
+    let max = numbers[0];
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+        sum += numbers[i];
+    }
+    const average = sum / numbers.length;
+    console.log("Giá trị lớn nhất trong mảng là: " + max);
+    console.log("Giá trị trung bình của các phần tử trong mảng là: " + average);
+</script>
+</body>
+</html>

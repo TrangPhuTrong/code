@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let a = [];
+        let b = [];
+        for (let i = 0; i < 10; i++) {
+            a[i] = parseInt(prompt(`Nhập vào phần tử thứ ${i + 1} của mảng a:`), 10);
+        }
+        for (let i = 0; i < 10; i++) {
+            b[i] = parseInt(prompt(`Nhập vào phần tử thứ ${i + 1} của mảng b:`), 10);
+        }
+        let c = new Array(20);
+        for (let i = 0; i < 10; i++) {
+            c[i] = a[i];
+            c[i + 10] = b[i];
+        }
+        console.log('Mảng c (mảng nối từ a và b):', c);
+    </script>
+</body>
+</html>

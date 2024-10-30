@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Tra cứu từ điển Anh - Việt</h2>
+<input type="text" id="englishWord" placeholder="Nhập từ tiếng Anh">
+<button onclick="dich()">Tra cứu</button>
+<p id="result"></p>
+
+<script>
+    const englishWords = ["hello", "apple", "book", "car", "computer"];
+    const vietnameseWords = ["xin chào", "táo", "sách", "xe hơi", "máy tính"];
+    function dich() {
+        const word = document.getElementById("englishWord").value.toLowerCase();
+        const index = englishWords.indexOf(word);
+        if (index !== -1) {
+            document.getElementById("result").textContent = `Nghĩa tiếng Việt: ${vietnameseWords[index]}`;
+        } else {
+            document.getElementById("result").textContent = "Không tìm thấy từ này.";
+        }
+    }
+</script>
+</body>
+</html>
