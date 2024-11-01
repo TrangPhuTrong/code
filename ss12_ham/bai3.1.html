@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function compareAndSum(num1, num2) {
+        if (num1 > num2) {
+            alert("Tham số thứ nhất lớn hơn tham số thứ hai");
+        } else {
+            return num1 + num2;
+        }
+    }
+    function showComparisonResult() {
+        const firstNumber = parseInt(prompt("Nhập vào tham số thứ nhất:"), 10);
+        const secondNumber = parseInt(prompt("Nhập vào tham số thứ hai:"), 10);
+        const result = compareAndSum(firstNumber, secondNumber);
+        if (result !== undefined) {
+            document.getElementById("output").innerText = "Tổng của hai tham số: " + result;
+        }
+    }
+</script>
+</body>
+</html>

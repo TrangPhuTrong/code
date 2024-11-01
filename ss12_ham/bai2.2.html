@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function areaCircle(radius) {
+        return Math.PI * radius * radius;
+    }
+    function perimeterCircle(radius) {
+        return 2 * Math.PI * radius;
+    }
+    const radius = parseFloat(prompt("Nhập bán kính của hình tròn:"));
+    const area = areaCircle(radius);
+    const perimeter = perimeterCircle(radius);
+
+    alert("Diện tích hình tròn với bán kính " + radius + " là: " + area.toFixed(2));
+    alert("Chu vi hình tròn với bán kính " + radius + " là: " + perimeter.toFixed(2));
+</script>
+</body>
+</html>

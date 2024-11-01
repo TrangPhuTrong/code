@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function swapNumbers(a, b) {
+        return [b, a];
+    }
+    const firstNumber = parseInt(prompt("Nhập số nguyên thứ nhất:"));
+    const secondNumber = parseInt(prompt("Nhập số nguyên thứ hai:"));
+    const swapped = swapNumbers(firstNumber, secondNumber);
+    alert("Số nguyên thứ nhất sau khi đổi chỗ là: " + swapped[0]);
+    alert("Số nguyên thứ hai sau khi đổi chỗ là: " + swapped[1]);
+</script>
+</body>
+</html>

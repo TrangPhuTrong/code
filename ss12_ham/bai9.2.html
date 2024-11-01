@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function countCharacter(arr, char) {
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === char) {
+                count++;
+            }
+        }
+        return count > 0 ? count : -1;
+    }
+    const input = prompt("Nhập vào các ký tự cách nhau bởi dấu phẩy (vd: a,b,c,d):");
+    const characterArray = input.split(',');
+    const charToCheck = prompt("Nhập ký tự cần kiểm tra:");
+    const result = countCharacter(characterArray, charToCheck);
+    if (result !== -1) {
+        alert("Ký tự '" + charToCheck + "' xuất hiện " + result + " lần trong mảng.");
+    } else {
+        alert("Ký tự '" + charToCheck + "' không có trong mảng.");
+    }
+</script>
+</body>
+</html>

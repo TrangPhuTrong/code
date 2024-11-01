@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="showResult()">Nhấn vào đây để tăng giá trị</button>
+<p id="output"></p>
+<script>
+    function increaseByOne(number) {
+        return number + 1;
+    }
+    function showResult() {
+        const inputNumber = parseInt(prompt("Nhập vào một số:"), 10);
+        const result = increaseByOne(inputNumber);
+        document.getElementById("output").innerText = "Kết quả: " + result;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function footToMeter(foot) {
+        return 0.305 * foot;
+    }
+  function meterToFoot(meter) {
+        return 3.279 * meter;
+    }
+    const conversionType = prompt("Nhập loại chuyển đổi: '1' để đổi từ feet sang meters, '2' để đổi từ meters sang feet");
+
+    if (conversionType === '1') {
+        const feet = parseFloat(prompt("Nhập số feet:"));
+        const meters = footToMeter(feet);
+        console.log(feet + " feet = " + meters.toFixed(2) + " meters");
+    } else if (conversionType === '2') {
+        const meters = parseFloat(prompt("Nhập số meters:"));
+        const feet = meterToFoot(meters);
+        console.log(meters + " meters = " + feet.toFixed(2) + " feet");
+    } else {
+        console.log("Lựa chọn không hợp lệ.");
+    }
+</script>
+</body>
+</html>
