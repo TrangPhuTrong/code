@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="product" placeholder="tên sản phẩm">
+<button onclick="addNew()">thêm mới</button>
+<!--    số lượng sản phẩm-->
+<span>Số lượng sản phẩm :</span><span id="soluong"></span>
+<p id="result"></p>
+<script>
+    let productlist = ["samsung","nokia","iphone","LG"]
+    display();
+    // hàm thêm mới
+    function addNew(){
+        let newProduct = document.getElementById("product").value;
+        if (newProduct !=''){
+            productlist.push(newProduct);
+        } else {
+            alert("yêu cầu nhập lại tên sản phẩm")
+        }
+        display();
+        document.getElementById("product").value = "";
+    }
+    // hàm bảng
+    function display(){
+        let tableString = `<table border="1" style="border-collapse:">
+                <tr>
+                    <th>STT</th>
+                    <th>name</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>`;
+                for (let i = 0; i < productlist.length; i++) {
+                                tableString +=`<tr>
+                    <td>${i+1}</td>
+                    <td>${productlist[i]}</td>
+                    <td><button onclick="updateProduct(${i})">update</button></td>
+                    <td><button onclick="deleteProduct(${i})">delete</button></td>
+                </tr>`;
+                }
+        tableString += `</table>`
+        document.getElementById(`result`).innerHTML = tableString;
+        // số lượng sản phẩm bằng độ dài mảng
+        document.getElementById(`soluong`).innerHTML = productlist.length;
+    }
+    // hàm xóa sản phẩm
+    function deleteProduct(index) {
+        let conf = confirm("bạn có muốn xóa sản phẩm :"+ productlist[index]+"???");
+        if (conf){
+            productlist.splice(index,1);
+        }
+        display();
+    }
+    function updateProduct(index) {
+        let newProduct = prompt("Nhập tên mới");
+        productlist[index] = newProduct;
+        display();
+    }
+</script>
+</body>
+</html>

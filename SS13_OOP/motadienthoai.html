@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Mobile {
+        constructor() {
+            this.batteryLevel = 100; // Trạng thái pin
+            this.isOn = false; // Trạng thái điện thoại bật hay tắt
+            this.currentMessage = ""; // Tin nhắn đang soạn thảo
+            this.inbox = []; // Hộp thư đến
+            this.sentMessages = []; // Hộp thư đã gửi
+        }
+
+        // Kiểm tra trạng thái bật/tắt của điện thoại
+        checkStatus() {
+            return this.isOn;
+        }
+
+        // Bật điện thoại
+        turnOn() {
+            if (!this.isOn) {
+                this.isOn = true;
+                console.log("Điện thoại đã bật.");
+            }
+        }
+
+        // Tắt điện thoại
+        turnOff() {
+            if (this.isOn) {
+                this.isOn = false;
+                console.log("Điện thoại đã tắt.");
+            }
+        }
+
+        // Xạc pin
+        chargeBattery() {
+            this.batteryLevel = 100;
+            console.log("Pin đã được xạc đầy.");
+        }
+
+        // Giảm pin sau mỗi hành động
+        useBattery() {
+            if (this.batteryLevel > 0) {
+                this.batteryLevel--;
+            } else {
+                console.log("Pin đã hết, vui lòng xạc pin.");
+                this.turnOff();
+            }
+        }
+
+        // Soạn tin nhắn
+        writeMessage(content) {
+            if (!this.isOn) {
+                console.log("Điện thoại chưa bật.");
+                return;
+            }
+            this.currentMessage = content;
+            console.log("Tin nhắn đã được soạn: " + content);
+            this.useBattery();
+        }
+
+        // Nhận tin nhắn từ điện thoại khác
+        receiveMessage(message) {
+            if (!this.isOn) {
+                console.log("Điện thoại chưa bật.");
+                return;
+            }
+            this.inbox.push(message);
+            console.log("Bạn có tin nhắn mới.");
+            this.useBattery();
+        }
+
+        // Gửi tin nhắn tới điện thoại khác
+        sendMessage(receiver) {
+            if (!this.isOn) {
+                console.log("Điện thoại chưa bật.");
+                return;
+            }
+            if (this.currentMessage) {
+                receiver.receiveMessage(this.currentMessage);
+                this.sentMessages.push(this.currentMessage);
+                console.log("Đã gửi tin nhắn: " + this.currentMessage);
+                this.currentMessage = "";
+                this.useBattery();
+            } else {
+                console.log("Chưa có tin nhắn nào để gửi.");
+            }
+        }
+
+        // Xem hộp thư đến
+        viewInbox() {
+            if (!this.isOn) {
+                console.log("Điện thoại chưa bật.");
+                return;
+            }
+            if (this.inbox.length === 0) {
+                console.log("Hộp thư đến trống.");
+            } else {
+                console.log("Hộp thư đến:");
+                this.inbox.forEach((msg, index) => console.log(`Tin nhắn ${index + 1}: ${msg}`));
+            }
+            this.useBattery();
+        }
+
+        // Xem tin đã gửi
+        viewSentMessages() {
+            if (!this.isOn) {
+                console.log("Điện thoại chưa bật.");
+                return;
+            }
+            if (this.sentMessages.length === 0) {
+                console.log("Chưa có tin nhắn đã gửi.");
+            } else {
+                console.log("Tin nhắn đã gửi:");
+                this.sentMessages.forEach((msg, index) => console.log(`Tin nhắn ${index + 1}: ${msg}`));
+            }
+            this.useBattery();
+        }
+    }
+
+    // Kịch bản sử dụng các đối tượng điện thoại
+    const nokia = new Mobile();
+    const iphone = new Mobile();
+
+    // Bật điện thoại nokia và iphone
+    nokia.turnOn();
+    iphone.turnOn();
+
+    // Nokia soạn tin nhắn và gửi cho iPhone
+    nokia.writeMessage("Chào bạn, đây là tin nhắn từ Nokia!");
+    nokia.sendMessage(iphone);
+
+    // iPhone kiểm tra hộp thư đến
+    iphone.viewInbox();
+</script>
+</body>
+</html>

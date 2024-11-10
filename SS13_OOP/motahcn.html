@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Rectangle Visualization</h2>
+<canvas id="rectangleCanvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+<script>
+    class retangle {
+        constructor(width, height) {
+            this.with = width;
+            this.height = height;
+        }
+
+        getArea() {
+            return this.with * this.height;
+        }
+
+        getChuVi() {
+            return (this.with + this.height) * 2;
+        }
+
+        draw(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if (canvas.getContext) {
+                const ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Xóa canvas trước khi vẽ
+                ctx.fillStyle = "#00AAFF"; // Màu nền cho hình chữ nhật
+                ctx.fillRect(50, 50, this.width, this.height); // Vẽ hình chữ nhật
+            }
+        }
+        updateDimensions(newWidth, newHeight) {
+            this.width = newWidth;
+            this.height = newHeight;
+        }
+    }
+
+    let myRectangle = new Rectangle(200, 100);
+    myRectangle.draw("rectangleCanvas");
+
+    console.log("Diện tích ban đầu:", myRectangle.getArea());
+    console.log("Chu vi ban đầu:", myRectangle.getChuVi());
+
+
+    myRectangle.updateDimensions(300, 150);
+
+    // Vẽ lại hình chữ nhật đã cập nhật
+    myRectangle.draw("rectangleCanvas");
+
+    // Hiển thị diện tích và chu vi sau khi cập nhật
+    console.log("Diện tích sau khi cập nhật:", myRectangle.getArea());
+    console.log("Chu vi sau khi cập nhật:", myRectangle.getChuVi());
+
+
+</script>
+</body>
+</html>

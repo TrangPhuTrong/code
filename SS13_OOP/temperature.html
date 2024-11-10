@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Temperature {
+        constructor(celcius) {
+            if (celcius < -237){
+                throw new Error("Gía trị nhiệt độ phải lớn hơn -237 celcius");
+            }
+            this.celcius = celcius;
+        }
+
+        toFahrenheiter() {
+            return (this.celcius*9/5)+32;
+        }
+        toKelvin() {
+            return this.celsius + 273.15;
+        }
+    }
+    const myTemperature = new Temperature(25);
+    const fahrenheit = myTemperature.toFahrenheit();
+    const kelvin = myTemperature.toKelvin();
+
+</script>
+</body>
+</html>
