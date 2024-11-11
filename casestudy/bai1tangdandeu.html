@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n;
+    do {
+        n = prompt("nhập độ dài");
+    } while (n<=0 || n > 20 || n%1!= 0);
+    let array = [];
+    for (let i=0; i<n; i++){
+        array.push(+prompt("nhập ptu thứ : "+ (i+1)));
+    }
+    alert("mảng vừa nhập là" + array);
+     let diff = array[1]-array[0];
+     if (diff <=0||array.length<3){
+         alert("not")
+     }else {
+         let flag = true;
+         for (let i = 0; i < array.length - 1; i++) {
+             if (array[i + 1] - array[i] !== diff) {
+                 flag = false;
+                 break
+             }
+         }
+         if (flag) {
+             alert("ok")
+         } else {
+             alert("no")
+         }
+     }
+
+</script>
+</body>
+</html>
