@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function main() {
+        let n = parseInt(prompt("Nhập độ dài của mảng (n <= 20):"), 10);
+        if (isNaN(n) || n <= 0 || n > 20) {
+            alert("Độ dài mảng không hợp lệ!");
+            return;
+        }
+        let array = [];
+        for (let i = 0; i < n; i++) {
+            let element = parseInt(prompt(`Nhập phần tử thứ ${i + 1}:`), 10);
+            if (isNaN(element)) {
+                alert("Giá trị không hợp lệ!");
+                return;
+            }
+            array.push(element);
+        }
+        console.log("Mảng vừa nhập:", array);
+        if (tangGiam(array)) {
+            console.log("Mảng tăng =>"+"OK");
+        } else {
+            console.log("Mảng giảm =>" + "No");
+        }
+    }
+    function tangGiam(array) {
+        for (let i = 0; i < array.length - 1; i++) {
+            if (array[i] >= array[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    main();
+</script>
+</body>
+</html>

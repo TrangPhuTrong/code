@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Product {
+        constructor(id, name, price, quantity) {
+            this.id = id;
+            this.name = name;
+            this.price = price;
+            this.quantity = quantity;
+        }
+    }
+
+    // Lớp ProductManager để quản lý danh sách sản phẩm
+    class ProductManager {
+        constructor() {
+            this.products = []; // Mảng chứa các sản phẩm
+        }
+
+        // Thêm sản phẩm mới
+        addProduct(product) {
+            this.products.push(product);
+            console.log("Sản phẩm đã được thêm thành công.");
+        }
+
+        // Hiển thị danh sách sản phẩm
+        displayProducts() {
+            if (this.products.length === 0) {
+                console.log("Không có sản phẩm nào.");
+                return;
+            }
+            console.log("Danh sách sản phẩm:");
+            this.products.forEach(product => {
+                console.log(`ID: ${product.id}, Tên: ${product.name}, Giá: ${product.price}, Số lượng: ${product.quantity}`);
+            });
+        }
+
+        // Tìm sản phẩm theo ID
+        findProductIndexById(id) {
+            return this.products.findIndex(product => product.id === id);
+        }
+
+        // Cập nhật thông tin sản phẩm
+        updateProduct(id, newName, newPrice, newQuantity) {
+            const index = this.findProductIndexById(id);
+            if (index !== -1) {
+                this.products[index].name = newName;
+                this.products[index].price = newPrice;
+                this.products[index].quantity = newQuantity;
+                console.log("Sản phẩm đã được cập nhật.");
+            } else {
+                console.log("Không tìm thấy sản phẩm với ID:", id);
+            }
+        }
+
+        // Xóa sản phẩm
+        deleteProduct(id) {
+            const index = this.findProductIndexById(id);
+            if (index !== -1) {
+                this.products.splice(index, 1);
+                console.log("Sản phẩm đã được xóa.");
+            } else {
+                console.log("Không tìm thấy sản phẩm với ID:", id);
+            }
+        }
+    }
+
+    // Sử dụng các lớp Product và ProductManager
+    const productManager = new ProductManager();
+
+    // Thêm các sản phẩm mới
+    productManager.addProduct(new Product(1, "Sản phẩm A", 100000, 5));
+    productManager.addProduct(new Product(2, "Sản phẩm B", 150000, 10));
+    productManager.addProduct(new Product(3, "Sản phẩm C", 200000, 8));
+
+    // Hiển thị danh sách sản phẩm
+    productManager.displayProducts();
+
+    // Cập nhật thông tin sản phẩm có ID 2
+    productManager.updateProduct(2, "Sản phẩm B (mới)", 180000, 12);
+
+    // Hiển thị danh sách sản phẩm sau khi cập nhật
+    productManager.displayProducts();
+
+    // Xóa sản phẩm có ID 1
+    productManager.deleteProduct(1);
+
+    // Hiển thị danh sách sản phẩm sau khi xóa
+    productManager.displayProducts();
+</script>
+</body>
+</html>
