@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function doiXung(array) {
+        let length = array.length;
+        for (let i = 0; i < length / 2; i++) {
+            if (array[i] !== array[length - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    let n = parseInt(prompt("Nhập độ dài của mảng (n <= 20):"), 10);
+    while (isNaN(n) || n <= 0 || n > 20) {
+        n = parseInt(prompt("Độ dài không hợp lệ. Vui lòng nhập lại (n <= 20):"), 10);
+    }
+    let array = [];
+    for (let i = 0; i < n; i++) {
+        let element = parseInt(prompt(`Nhập phần tử thứ ${i + 1}:`), 10);
+        array.push(element);
+    }
+    console.log("Mảng đã nhập:", array);
+    if (doiXung(array)) {
+        console.log("OK");
+    } else {
+        console.log("No");
+    }
+</script>
+</body>
+</html>
