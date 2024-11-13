@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function find(x) {
+        if (x.indexOf('/') === -1) {
+            console.log("*Không phải là phân số");
+            return;
+        }
+        let [numerator, denominator] = x.split("/").map(Number);
+        if (!denominator) {
+            console.log("*Phân số không hợp lệ (mẫu số không thể bằng 0)");
+            return;
+        }
+        function gcd(a, b) {
+            while (b !== 0) {
+                [a, b] = [b, a % b];
+            }
+            return a;
+        }
+        let gcdValue = gcd(numerator, denominator);
+        numerator /= gcdValue;
+        denominator /= gcdValue;
+        console.log(`Phân số tối giản: ${numerator}/${denominator}`);
+    }
+    // Ví dụ
+    find("8/12");
+    find("3/0");
+    find("abc");
+    find("15/5");
+
+</script>
+</body>
+</html>
