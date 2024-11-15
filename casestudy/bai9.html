@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function checkArray(arr) {
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] >= arr[i + 1]) {
+                return "No";
+            }
+        }
+        return "Ok"; // Nếu tất cả các cặp đều thỏa mãn điều kiện
+    }
+
+    let n = parseInt(prompt("Nhập số lượng phần tử của mảng (lưu ý: là số chẵn): "), 10);
+
+    if (n % 2 !== 0) {
+        console.log("Số lượng phần tử phải là số chẵn!");
+    } else {
+        let array = [];
+        for (let i = 0; i < n; i++) {
+            let element = parseInt(prompt(`Nhập phần tử thứ ${i + 1}: `), 10);
+            array.push(element);
+        }
+
+        console.log("Mảng vừa nhập:", array);
+        let result = checkArray(array);
+        console.log(result);
+    }
+</script>
+</body>
+</html>
