@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function isPrime(n) {
+        if (n <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i === 0) return false;
+        }
+        return true;
+    }
+
+    function checkAllPrime(array) {
+
+        for (let num of array) {
+            if (!isPrime(num)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+</script>
+</body>
+</html>
