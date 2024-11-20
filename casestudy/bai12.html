@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="bai12.js"></script>
+</head>
+<body>
+<button onclick="addStudent()">Thêm mới học viên</button>
+<button onclick="edit()">Sửa thông tin học viên</button>
+<button onclick="deleteT()">Xóa học viên</button>
+<button onclick="display()">Hiển thị</button>
+<p id="result"></p>
+<script>
+        class Student {
+            constructor(id, name, className, email, birthDay, module) {
+                this.id = id;
+                this.name = name;
+                this.className = className;
+                this.email = email;
+                this.birthDay = birthDay;
+                this.module = module;
+            }
+        }
+        let student1 = new Student("HV-0001", "Nguyễn Văn A", "C1022G1", "nguyenvana@gmail.com", "01/01/2004", 2);
+        let student2 = new Student("HV-0002", "Nguyễn Văn B", "C1022G1", "nguyenvanb@gmail.com", "02/02/2004", 2);
+        let student3 = new Student("HV-0003", "Nguyễn Thị C", "C1022G1", "nguyenthic@gmail.com", "03/03/2004", 1);
+        let studentList = [student1, student2, student3];
+
+        display();
+
+        function display() {
+            let tableString = ` <table border="1", style="border-collapse: collapse; text-align: center">
+                        <tr>
+                          <th>Mã học viên</th>
+                          <th>Tên</th>
+                          <th>Lớp</th>
+                          <th>Email</th>
+                          <th>Ngày sinh</th>
+                          <th>Module</th>
+                        </tr>`;
+            for (let i = 0; i < studentList.length; i++) {
+                tableString += `<tr>
+                          <td>${studentList[i].id}</td>
+                          <td>${studentList[i].name}</td>
+                          <td>${studentList[i].className}</td>
+                          <td>${studentList[i].email}</td>
+                          <td>${studentList[i].birthDay}</td>
+                          <td>${studentList[i].module}</td>
+                      </tr>`;
+            }
+            tableString += `</table>`;
+
+        document.getElementById("result").innerHTML = tableString;
+    }
+
+    function addStudent() {
+        let conf = confirm(`Bạn muốn thêm mới học viên?`);
+        if (conf === true) {
+            let newID = checkID();
+            let newName = checkName();
+            let newClassName = prompt(`Nhập tên lớp của học viên`);
+            let newEmail = prompt(`Nhập email của học viên`);
+            let newBirthDay = checkBirthday();
+            let newModule = checkModule();
+
+            if (newClassName === "" || newEmail === "") {
+                alert(`Không được để trống thông tin`);
+            } else {
+                let newStudent = new Student(
+                    newID,
+                    newName,
+                    newClassName,
+                    newEmail,
+                    newBirthDay,
+                    newModule
+                );
+                studentList.push(newStudent);
+                display();
+            }
+        }
+    }
+
+    function edit() {
+        let conf = confirm(`Bạn muốn điều chỉnh thông tin hoc viên? `);
+        if (conf === true) {
+            let checkID = prompt(`Nhập mã học viên cần điều chỉnh`);
+
+            for (let student of studentList) {
+                if (student.id === checkID) {
+                    student.id = prompt(`Nhập mã học viên `);
+                    student.name = prompt(`Nhập tên học viên`);
+                    student.className = prompt(`Nhập lớp của học viên `);
+                    student.email = prompt(`Nhập email của học viên`);
+                    student.birthDay = prompt(`Nhập ngày sinh học viên`);
+                    if (
+                        student.id === "" ||
+                        student.name === "" ||
+                        student.className === "" ||
+                        student.email === "" ||
+                        student.birthDay === ""
+                    ) {
+                        alert(`Không được để trống thông tin`);
+                        return;
+                    }
+                    display();
+                    return;
+                }
+            }
+            alert(`Không tồn tại mã sinh viên`);
+        }
+    }
+
+
+    function deleteT() {
+        let checkID = prompt(`Nhập mã học viên cần xóa`);
+        for (let i = 0; i < studentList.length; i++) {
+            if (studentList[i].id === checkID) {
+                let conf = confirm(`Bạn muốn xóa thông tin hoc viên? `);
+                if (conf === true) {
+                    studentList.splice(i, 1);
+                    display();
+                    return;
+                }
+            }
+        }
+        alert(`Không tồn tại mã sinh viên`);
+    }
+
+
+    function checkID(newID) {
+        while (true) {
+            newID = prompt(`Nhập mã học viên`);
+            if (
+                newID.length !== 7 ||
+                !newID.includes("-") ||
+                !checkFormatID(newID)
+            ) {
+                alert(`Mã học viên chưa hợp lệ. Vui lòng nhập lại`);
+                continue;
+            }
+            //kiểm tra có trùng với ID đã tồn tại hay không
+            let isDuplicate = false;
+            for (let i = 0; i < studentList.length; i++) {
+                if (studentList[i].id === newID) {
+                    check = true;
+                    break;
+                }
+            }
+
+            if (!isDuplicate) {
+                return newID;
+            } else {
+                alert(`Mã học viên đã tồn tại. Vui lòng nhập lại!`);
+            }
+        }
+    }
+
+    //tạo 1 function kiểm tra định dạng HV-XXXX (hàm nhỏ của hàm checkID)
+    function checkFormatID(newID) {
+        let array = newID.split("-");
+        let string = array[0];
+        let number = array[1];
+
+        //check string
+        if (string !== "HV") {
+            return false;
+        }
+        //check number
+        for (let i = 0; i < number.length; i++) {
+            if (isNaN(number[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //hàm kiểm tra tên (tối đa 50 ký tự)
+    function checkName(newName) {
+        newName = prompt(`Mời nhập tên học viên`);
+        while (newName.length > 50) {
+            newName = prompt(
+                `Tên học viên không được vượt quá 50 ký tự. Vui lòng nhập lại tên`
+            );
+        }
+        return newName;
+    }
+
+    //hàm kiểm tra Module
+    function checkModule(newModule) {
+        newModule = +prompt(`Nhập Module của học viên`);
+        while (isNaN(newModule) || newModule < 1 || newModule > 6) {
+            newModule = +prompt(`Module chỉ từ 1 đến 6. Vui lòng nhập lại`);
+        }
+        return newModule;
+    }
+
+    //hàm kiểm tra birthDay
+    function checkBirthday(newBirthDay) {
+        newBirthDay = prompt(`Nhập ngày sinh của học viên`);
+        while (!checkFormatBirthday(newBirthDay)) {
+            newBirthDay = prompt(
+                `Ngày sinh phải đúng định dạng dd/mm/yyyy. Vui lòng nhập lại`
+            );
+        }
+        return newBirthDay;
+    }
+
+    //hàm kiểm tra định dạng ngày sinh dd/mm/yyyy (hàm nhỏ của checkBirthday)
+    function checkFormatBirthday(newBirthDay) {
+        if (!newBirthDay.includes("/")) {
+            return false;
+        }
+
+        let array = newBirthDay.split("/");
+        if (array.length !== 3) {
+            return false;
+        }
+        let day = array[0];
+        let month = array[1];
+        let year = array[2];
+
+        if (day.length !== 2 || month.length !== 2 || year.length !== 4) {
+            return false;
+        }
+
+        let dayNum = Number(array[0]);
+        let monthNum = Number(array[1]);
+        let yearNum = Number(array[2]);
+
+        if (yearNum > 2024) {
+            return false;
+        }
+
+        if (monthNum < 1 || monthNum > 12) {
+            return false;
+        }
+
+        if (monthNum === 2) {
+            if (dayNum < 1 || dayNum > 29) {
+                return false;
+            }
+        }
+
+        if (checkMonth(monthNum)) {
+            if (dayNum < 1 || dayNum > 31) {
+                return false;
+            }
+        } else {
+            if (dayNum < 1 || dayNum > 30) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //function kiểm tra số ngày trong tháng(hàm nhỏ của checkFormatBirthday)
+    function checkMonth(monthNum) {
+        switch (monthNum) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                return true; // 31 ngày
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                return false; // 30 ngày
+        }
+    }
+</script>
+</body>
+</html>

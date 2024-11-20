@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="addWorker()">Thêm công nhân mới</button>
+<button onclick="edit()">Sửa thông tin công nhân</button>
+<button onclick="deleteW()">Xóa công nhân</button>
+<button onclick="display()">Hiển thị</button>
+<p id="result"></p>
+    <script>
+        class Worker {
+            constructor(STT, Name, birthDay, address, position) {
+                this.STT = STT;
+                this.Name = Name;
+                this.birthDay = birthDay;
+                this.address = address;
+                this.position = position;
+            }
+        }
+        let Worker1 = new Worker("1","Nguyễn Văn A","20/11/2000","hanoi","director");
+        let Worker2 = new Worker("2","Nguyễn Văn B","20/12/2000","hanoi","secretary");
+        let Workerlist = [Worker1,Worker2];
+        function display() {
+            let tableString = ` <table border="1", style="border-collapse: collapse; text-align: center">
+                        <tr>
+                          <th>STT</th>
+                          <th>Name</th>
+                          <th>birthDay</th>
+                          <th>addres</th>
+                          <th>position</th>
+                        </tr>`;
+            for (let i = 0; i < Workerlist.length; i++) {
+                tableString += `<tr>
+                          <td>${Workerlist[i].STT}</td>
+                          <td>${Workerlist[i].Name}</td>
+                          <td>${Workerlist[i].birthDay}</td>
+                          <td>${Workerlist[i].address}</td>
+                          <td>${Workerlist[i].position}</td>
+
+                      </tr>`;
+            }
+            tableString += `</table>`;
+
+            document.getElementById("result").innerHTML = tableString;
+        }
+        function addWorker() {
+            let conf = confirm(`Bạn muốn thêm mới công nhân?`);
+
+            if (conf) {
+                let newSTT = Workerlist.length + 1; //
+                let newName = prompt("Nhập họ và tên công nhân:");
+                let newBirthDay =checkBirthday();
+                let newAddress = prompt("Nhập địa chỉ:");
+                let newPosition = prompt("Nhập chức vụ:");
+
+                if (!newName || !newBirthDay || !newAddress || !newPosition) {
+                    alert("Vui lòng nhập đầy đủ thông tin!");
+                    return;
+                } else if (newName === "" || newBirthDay === "" ||newAddress === ""||newPosition === ""){
+                    alert("Vui lòng nhập đầy đủ thông tin!");
+                    return;
+                }
+                let newWorker = new Worker(newSTT, newName, newBirthDay, newAddress, newPosition);
+                Workerlist.push(newWorker);
+
+                alert("Công nhân đã được thêm vào danh sách!");
+                display();
+            }
+        }
+        function edit() {
+            let STT = prompt("Nhập STT của công nhân cần sửa:");
+
+            let worker = Workerlist.find(worker => worker.STT == STT); // Tìm công nhân theo STT
+
+            if (!worker) {
+                alert("Không tìm thấy công nhân với STT này!");
+                return;
+            }
+            worker.Name = prompt("Nhập họ và tên công nhân:", worker.Name);
+            worker.birthDay = prompt("Nhập ngày sinh (dd/mm/yyyy):", worker.birthDay);
+            worker.address = prompt("Nhập địa chỉ:", worker.address);
+            worker.position = prompt("Nhập chức vụ:", worker.position);
+
+            alert("Thông tin công nhân đã được cập nhật!");
+            display(); // Hiển thị lại danh sách công nhân
+        }
+
+        // Hàm xóa công nhân
+        function deleteW() {
+            let STT = prompt("Nhập STT của công nhân cần xóa:");
+
+            let workerIndex = Workerlist.findIndex(worker => worker.STT == STT); // Tìm chỉ mục công nhân
+
+            if (workerIndex === -1) {
+                alert("Không tìm thấy công nhân với STT này!");
+                return;
+            }
+            let confirmDelete = confirm(`Bạn có chắc chắn muốn xóa công nhân có STT ${STT}?`);
+            if (confirmDelete) {
+                Workerlist.splice(workerIndex, 1);
+                alert("Công nhân đã được xóa khỏi danh sách!");
+                display();
+            }
+        }
+        function checkBirthday(newBirthDay) {
+            newBirthDay = prompt(`Nhập ngày sinh công nhân`);
+            while (!checkFormatBirthday(newBirthDay)) {
+                newBirthDay = prompt(
+                    `Ngày sinh phải đúng định dạng dd/mm/yyyy. Vui lòng nhập lại`
+                );
+            }
+            return newBirthDay;
+        }
+        function checkFormatBirthday(newBirthday) {
+            // Tách ngày, tháng, năm từ chuỗi nhập vào
+            const parts = newBirthday.split("/");
+
+            // Kiểm tra xem có đúng 3 phần (ngày, tháng, năm) không
+            if (parts.length !== 3) {
+                return false;
+            }
+
+            const day = parseInt(parts[0], 10);  // Ngày
+            const month = parseInt(parts[1], 10);  // Tháng
+            const year = parseInt(parts[2], 10);  // Năm
+
+            // Kiểm tra ngày, tháng, năm có hợp lệ không
+            if (isNaN(day) || isNaN(month) || isNaN(year)) {
+                return false;
+            }
+
+            // Kiểm tra tháng (từ 1 đến 12)
+            if (month < 1 || month > 12) {
+                return false;
+            }
+
+            // Kiểm tra ngày hợp lệ trong tháng (từ 1 đến 31)
+            if (day < 1 || day > 31) {
+                return false;
+            }
+
+            // Kiểm tra số ngày trong tháng (tháng 2, tháng 4, tháng 6, tháng 9, tháng 11 có số ngày khác nhau)
+            if (month === 2) {
+                // Kiểm tra năm nhuận
+                if (isLeapYear(year)) {
+                    if (day > 29) {
+                        return false;
+                    }
+                } else {
+                    if (day > 28) {
+                        return false;
+                    }
+                }
+            } else if ([4, 6, 9, 11].includes(month)) {
+                // Các tháng có 30 ngày
+                if (day > 30) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // Hàm kiểm tra năm nhuận
+        function isLeapYear(year) {
+            if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

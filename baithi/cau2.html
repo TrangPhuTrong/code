@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let input = parseInt(prompt("Nhập một số nguyên dương:"));
+    if (isNaN(input) || input <= 0) {
+        alert("Vui lòng nhập một số nguyên dương.");
+    } else {
+        if (isPerfectNumber(input)) {
+            alert(input + " là số hoàn hảo.");
+        } else {
+            alert(input + " không phải là số hoàn hảo.");
+        }
+    }
+    function isPerfectNumber(num) {
+        if (num <= 0) {
+            return false;
+        }
+        let wish = 0;
+        for (let i = 1; i <= num / 2; i++) {
+            if (num % i === 0) {
+                wish += i;
+            }
+            return wish === num;
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Nhập Mảng và Tính Trung Bình Cộng</h1>
+    <button onclick="enterArray()">Nhập Mảng</button>
+    <button onclick="calculateAverage()">Tính Trung Bình Cộng</button>
+<h3>Mảng đã nhập:</h3>
+    <p id="arrayDisplay"></p>
+<h3>Trung bình cộng các số chia hết cho 3:</h3>
+    <p id="averageDisplay"></p>
+
+<script>
+    let arr = [];
+    function enterArray() {
+        let n = parseInt(prompt("Nhập số lượng phần tử trong mảng (tối đa 50):"));
+        if (isNaN(n) || n <= 0 || n > 50) {
+            alert("Số lượng phần tử không hợp lệ! Vui lòng nhập từ 1 đến 50.");
+            return;
+        }
+        arr = [];
+        for (let i = 0; i < n; i++) {
+            let value = prompt(`Nhập phần tử thứ ${i + 1}:`);
+            value = parseInt(value);
+            if (!isNaN(value)) {
+                arr.push(value);
+            } else {
+                alert("Vui lòng nhập số nguyên hợp lệ.");
+            }
+        }
+        document.getElementById("arrayDisplay").innerText = arr.join(", ");
+    }
+    function calculateAverage() {
+        let sum = 0;
+        let count = 0;
+
+        for (let num of arr) {
+            if (num % 3 === 0) {
+                sum += num;
+                count++;
+            }
+        }
+
+        if (count === 0) {
+            document.getElementById("averageDisplay").innerText = "Không có số nào chia hết cho 3.";
+        } else {
+            let average = sum / count;
+            document.getElementById("averageDisplay").innerText = average.toFixed(2);
+        }
+    }
+</script>
+</body>
+</html>

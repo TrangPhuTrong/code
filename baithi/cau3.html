@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Tính số ngày trong tháng</h1>
+<input type="text" id="dateInput" placeholder="Nhập tháng/năm (MM/yyyy)">
+<button onclick="tinhNgay()">Tính số ngày</button>
+<h2>Kết quả:</h2>
+<p id="resultDisplay"></p>
+<script>
+    function namNhuan(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+
+    function tinhNgay() {
+        const input = document.getElementById("dateInput").value;
+        const [month, year] = input.split("/").map(Number);
+
+        if (!month || !year || month < 1 || month > 12 || year < 2000 || year > 2099) {
+            document.getElementById("resultDisplay").innerText = "Vui lòng nhập đúng định dạng MM/yyyy.";
+            return;
+        }
+
+        let days;
+        if (month === 2) {
+            days = namNhuan(year) ? 29 : 28;
+        } else if ([4, 6, 9, 11].includes(month)) {
+            days = 30;
+        } else {
+            days = 31;
+        }
+
+        document.getElementById("resultDisplay").innerText = `Số ngày trong tháng ${month}/${year} là: ${days}`;
+    }
+</script>
+</body>
+</html>

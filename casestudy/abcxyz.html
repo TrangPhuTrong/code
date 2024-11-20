@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý học viện CODEGYM</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Quản lý học viên CODEGYM</h1>
+<table id="studentTable">
+    <thead>
+    <tr>
+        <th>Mã học viên</th>
+        <th>Tên</th>
+        <th>Lớp</th>
+        <th>Email</th>
+        <th>Ngày sinh</th>
+        <th>Module</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Học viên -->
+    </tbody>
+</table>
+<button onclick="displayStudents()">Hiển thị</button>
+<button onclick="addStudent()">Thêm mới</button>
+<button onclick="editStudent()">Sửa</button>
+<button onclick="deleteStudent()">Xóa</button>
+<script>
+    let students = [
+        { id: "HV-0001", name: "Nguyễn Văn A", class: "C101", email: "vana@gmail.com", dob: "10/10/2000", module: 1 },
+        { id: "HV-0002", name: "Trần Thị B", class: "C102", email: "thib@gmail.com", dob: "12/05/2001", module: 2 },
+    ];
+
+    // Hiển thị danh sách học viên
+    function displayStudents() {
+        const tbody = document.querySelector("#studentTable tbody");
+        tbody.innerHTML = ""; // Xóa danh sách cũ
+        students.forEach(student => {
+            const row = `<tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.class}</td>
+            <td>${student.email}</td>
+            <td>${student.dob}</td>
+            <td>${student.module}</td>
+        </tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    // Thêm học viên mới
+    function addStudent() {
+        const id = prompt("Nhập mã học viên (HV-XXXX):");
+        if (students.some(student => student.id === id)) {
+            alert("Mã học viên đã tồn tại!");
+            return;
+        }
+        const name = prompt("Nhập tên học viên (tối đa 50 ký tự):");
+        if (name.length > 50) {
+            alert("Tên học viên quá dài!");
+            return;
+        }
+        const className = prompt("Nhập lớp học viên:");
+        const email = prompt("Nhập email:");
+        const dob = prompt("Nhập ngày sinh (dd/mm/yyyy):");
+        const module = parseInt(prompt("Nhập module (1 - 6):"), 10);
+        if (module < 1 || module > 6) {
+            alert("Module không hợp lệ!");
+            return;
+        }
+
+        students.push({ id, name, class: className, email, dob, module });
+        alert("Thêm học viên thành công!");
+        displayStudents();
+    }
+
+    // Sửa thông tin học viên
+    function editStudent() {
+        const id = prompt("Nhập mã học viên cần sửa:");
+        const student = students.find(student => student.id === id);
+        if (!student) {
+            alert("Mã học viên không tồn tại!");
+            return;
+        }
+
+        student.name = prompt("Nhập tên mới:", student.name);
+        student.class = prompt("Nhập lớp mới:", student.class);
+        student.email = prompt("Nhập email mới:", student.email);
+        student.dob = prompt("Nhập ngày sinh mới (dd/mm/yyyy):", student.dob);
+        student.module = parseInt(prompt("Nhập module mới (1 - 6):", student.module), 10);
+
+        alert("Cập nhật thông tin học viên thành công!");
+        displayStudents();
+    }
+
+    // Xóa học viên
+    function deleteStudent() {
+        const id = prompt("Nhập mã học viên cần xóa:");
+        const index = students.findIndex(student => student.id === id);
+        if (index === -1) {
+            alert("Mã học viên không tồn tại!");
+            return;
+        }
+
+        const confirmDelete = confirm("Bạn có chắc muốn xóa học viên này?");
+        if (confirmDelete) {
+            students.splice(index, 1);
+            alert("Xóa học viên thành công!");
+            displayStudents();
+        }
+    }
+</script>
+</body>
+</html>
