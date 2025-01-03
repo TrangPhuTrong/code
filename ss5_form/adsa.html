@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* Nền toàn bộ trang web */
+        body {
+            background-color: lightblue; /* Màu nền xanh dương */
+            margin: 0; /* Loại bỏ khoảng cách mặc định */
+            padding: 0;
+            font-family: Arial, sans-serif; /* Font chữ đẹp hơn */
+        }
+
+        /* CSS cho toàn bộ khung */
+        div {
+            background-color: lightslategray;
+            margin: 50px auto; /* Căn giữa khung nội dung */
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%; /* Độ rộng khung */
+            max-width: 600px; /* Độ rộng tối đa */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+        }
+
+        /* CSS cho tiêu đề */
+        h2 {
+            background-color: gray;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* CSS cho label */
+        label {
+            color: black;
+            margin-left: 50px;
+            display: inline-block;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        /* CSS cho input */
+        input[type="text"], input[type="email"] {
+            width: 300px;
+            padding: 5px;
+            margin-left: 10px;
+            border: 1px solid gray;
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"] {
+            margin: 5px;
+        }
+
+        /* CSS cho nút gửi và nhập lại */
+        input[type="submit"], input[type="reset"] {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: gray;
+            color: white;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form method="get" action="form_dangkynguoidung.html">
+        <h2>SỞ THÍCH CỦA BẠN</h2>
+        <label>Họ và tên</label>
+        <input type="text">
+        <br><br>
+
+        <label>Email</label>
+        <input type="email">
+        <br><br>
+
+        <label>Sở thích</label>
+        <input type="checkbox"> Thể thao
+        <input type="checkbox"> Âm nhạc
+        <input type="checkbox"> Đọc sách
+        <br><br>
+        <input type="checkbox" style="margin-left: 120px"> Lướt web
+        <input type="checkbox"> Chơi game
+        <input type="checkbox"> Điện ảnh
+        <br><br>
+        <input type="checkbox" style="margin-left: 120px"> Du lịch
+        <br><br>
+
+        <input type="submit" value="Gửi thông tin" style="margin-left: 150px">
+        <input type="reset" value="Nhập lại">
+    </form>
+</div>
+</body>
+</html>

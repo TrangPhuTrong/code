@@ -5,30 +5,36 @@
     <title>Title</title>
 </head>
 <body>
-<script>
-    let input = parseInt(prompt("Nhập một số nguyên dương:"));
-    if (isNaN(input) || input <= 0) {
-        alert("Vui lòng nhập một số nguyên dương.");
-    } else {
-        if (isPerfectNumber(input)) {
-            alert(input + " là số hoàn hảo.");
-        } else {
-            alert(input + " không phải là số hoàn hảo.");
-        }
-    }
-    function isPerfectNumber(num) {
-        if (num <= 0) {
-            return false;
-        }
-        let wish = 0;
+    <h1>Kiểm Tra Số Hoàn Hảo</h1>
+    <input type="number" id="numberInput" placeholder="Nhập số nguyên dương"/>
+    <button onclick="kiemtraperfect()">Kiểm tra</button>
+
+    <h2>Kết quả:</h2>
+    <p id="resultDisplay"></p>
+    <script>
+        function PerfectNumber(num) {
+        if (num <= 0) return false;
+        let sum = 0;
         for (let i = 1; i <= num / 2; i++) {
-            if (num % i === 0) {
-                wish += i;
-            }
-            return wish === num;
-        }
+        if (num % i === 0) {
+        sum += i;
+    }
+    }
+        return sum === num;
+    }
+
+        function kiemtraperfect() {
+        const input = document.getElementById("numberInput").value;
+        const num = parseInt(input);
+
+        if (isNaN(num) || num <= 0) {
+        document.getElementById("resultDisplay").innerText = "nhập một số nguyên dương hợp lệ ";
+        return;
+    }
+
+        const result = PerfectNumber(num);
+        document.getElementById("resultDisplay").innerText = `${num} là số hoàn hảo: ${result}`;
     }
 </script>
-
 </body>
 </html>

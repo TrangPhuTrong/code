@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label >
+    <input type="checkbox" id="good" onclick="updateOptions()"> Good ( chất lượng tốt )
+</label>
+<label >
+    <input type="checkbox" id="fast" onclick="updateOptions()"> fast ( nhanh chóng )
+</label>
+<label >
+    <input type="checkbox" id="cheap" onclick="updateOptions()"> cheap ( giá rẻ )
+    <p id="result">Bạn có thể chọn max 2 yếu tố.</p>;
+    <script>
+        function updateOptions(){
+            const good = document.getElementById('good');
+            const fast = document.getElementById('fast');
+            const cheap = document.getElementById('cheap');
+            // nếu cả 3  cùng đc chọn
+            if (good.checked && fast.checked && cheap.checked){
+                if (good.wasChecked){
+                    good.checked= false;
+                }else if (fast.wasChecked) {
+                    fast.checked = false;
+                } else if (cheap.wasChecked)
+            }
+        }
+    </script>
+</label>
+</body>
+</html>
